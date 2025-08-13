@@ -3,7 +3,7 @@ import json
 import google.generativeai as genai
 
 # Get the API key from environment variable
-api_key = os.getenv("GENAI_API_KEY")
+api_key = "AIzaSyByTFQszk0KXL9GR8y7lLMAivDLZwCxZiY"
 
 if not api_key:
     raise ValueError("GENAI_API_KEY environment variable is not set.")
@@ -158,5 +158,6 @@ lastly follow answer format and save answer of questions in result as JSON file.
             response_mime_type="application/json"
         )
     )
+
 
     return json.loads(response.text)
