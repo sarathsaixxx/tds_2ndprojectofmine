@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FastAPI File Upload</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
+    pre { background: #f4f4f4; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Upload Files</h1>
+  <form id="uploadForm">
+    <input type="file" id="files" name="files" multiple>
+    <br><br>
+    <button type="submit">Done</button>
+  </form>
+  <div style="margin-top:30px;">
+    <h3>Response:</h3>
+    <pre id="response">Wait, not recieved.</pre>
+  </div>
+  <script>
+    const form = document.getElementById('uploadForm');
+    const responseBox = document.getElementById('response');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const f = document.getElementById('files');
+      const fd = new FormData();
+      for (const file of f.files) {
+        fd.append(file.name, file);
+      }
+      responseBox.textContent = "Please be patient (the result is displayed in 1-2 min)...";
+      try {
+        const res = await fetch('/api', {
+          method: 'POST',
+          body: fd
+        });
+        const data = await res.json();
+        responseBox.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        responseBox.textContent = "Error: " + err;
+      }
+    });
+  </script>
+</body>
+</html>
