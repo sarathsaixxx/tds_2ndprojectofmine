@@ -257,3 +257,10 @@ async def analyze(request: Request):
             raw_content = f.read()
 
             return JSONResponse({"message": f"Error occured while processing result.json: {e}", "raw_result": raw_content})
+
+import os
+
+port = int(os.environ.get("PORT", 8000))  # Railway sets PORT env var automatically
+
+app.run(host="0.0.0.0", port=port)
+
