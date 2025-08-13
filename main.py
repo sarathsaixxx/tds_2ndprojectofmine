@@ -1,4 +1,4 @@
-# $env:GENAI_API_KEY = "AIzaSyByTFQszk0KXL9GR8y7lLMAivDLZwCxZiY"
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -255,4 +255,5 @@ async def analyze(request: Request):
             # Return raw content if JSON parsing fails
             f.seek(0)
             raw_content = f.read()
+
             return JSONResponse({"message": f"Error occured while processing result.json: {e}", "raw_result": raw_content})
