@@ -6,7 +6,7 @@ timeout = httpx.Timeout(60.0, connect=10.0)  # 60 seconds total timeout, 10s con
 
 
 
-AIPIPE_TOKEN = os.getenv("AIPIPE_TOKEN")
+AIPIPE_TOKEN = "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"
 API_URL = "https://aipipe.org/openrouter/v1/chat/completions"
 MODEL_NAME = "openai/gpt-4.1"
 #MODEL_NAME = "openai/gpt-4.1-nano"
@@ -195,3 +195,4 @@ lastly follow answer format and save answer of questions in result as JSON file.
         content = response.json()
         llm_response = content["choices"][0]["message"]["content"]
         return llm_response 
+
